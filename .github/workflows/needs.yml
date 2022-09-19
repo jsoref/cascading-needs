@@ -40,5 +40,5 @@ jobs:
       id: hello
       shell: bash
       run: |
-        echo hello ${{ needs.first.outputs.first }}
-        echo hello ${{ needs.second.outputs.second }}
+        echo cruel ${{ needs.first.outputs.first }}
+        echo door ${{ needs.second.outputs.second }}
