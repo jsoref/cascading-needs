@@ -1,4 +1,4 @@
-name: `needs` tests
+name: needs tests
 
 on:
   push:
