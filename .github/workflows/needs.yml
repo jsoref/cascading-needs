@@ -1,0 +1,44 @@
+name: `needs` tests
+
+on:
+  push:
+
+jobs:
+  first:
+    name: first
+    runs-on: ubuntu-latest
+    steps:
+    - name: hello
+      id: hello
+      shell: bash
+      run: |
+        echo hello world
+        echo ::set-output name=first::world
+    outputs:
+      first: ${{ steps.hello.first }}
+
+  second:
+    name: second
+    needs: first
+    runs-on: ubuntu-latest
+    steps:
+    - name: hello
+      id: hello
+      shell: bash
+      run: |
+        echo hello ${{ needs.first.outputs.first }}
+        echo ::set-output name=second::prize
+    outputs:
+      second: ${{ steps.hello.second }}
+
+  third:
+    name: third
+    needs: second
+    runs-on: ubuntu-latest
+    steps:
+    - name: hello
+      id: hello
+      shell: bash
+      run: |
+        echo hello ${{ needs.first.outputs.first }}
+        echo hello ${{ needs.second.outputs.second }}
